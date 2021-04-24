@@ -1,0 +1,54 @@
+group 'net.gonex.plugin.vnpt_ekyc'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+        flatDir {
+            dirs project(':vnpt_ekyc').file('libs')
+        }
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 30
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.3.0-alpha02'
+    implementation 'androidx.exifinterface:exifinterface:1.2.0'
+
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation (name: 'android_vnpt_ekyc_sdk', ext: 'aar')
+//    implementation files (dir: "libs", include: ['*.jar', '*.aar'])
+//    api files('libs/android_vnpt_ekyc_sdk.aar')
+//    api(name: 'android_vnpt_ekyc_sdk', ext: 'aar')
+//    implementation fileTree(dir: 'libs', include: ['*.aar'])
+
+}
